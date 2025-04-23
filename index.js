@@ -106,6 +106,7 @@ bot.on("text", async (ctx) => {
 bot.on("photo", async (ctx) => {
   try {
     await ctx.replyWithChatAction("upload_photo");
+
     const photoId = ctx.message.photo.at(-1).file_id;
     const fileLink = await ctx.telegram.getFileLink(photoId);
 
@@ -114,11 +115,15 @@ bot.on("photo", async (ctx) => {
     const photoBuffer = Buffer.from(arrayBuffer);
 
     const formData = new FormData();
-    formData.append("file", photoBuffer, { filename: "photo.jpg" });
+    formData.append("file", photoBuffer, {
+      filename: "photo.jpg",
+      contentType: "image/jpeg", // Ensure contentType is set
+    });
 
     const response = await fetch(API_ENDPOINT, {
       method: "POST",
       body: formData,
+      headers: formData.getHeaders(), // Important!
     });
 
     if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
@@ -136,6 +141,7 @@ bot.on("photo", async (ctx) => {
     await ctx.reply("⚠️ Sorry, I encountered an error while processing your photo. Please try again later.");
   }
 });
+
 
 bot.on("document", (ctx) =>
   ctx.reply("📄 I can only analyze text messages and photos at the moment. Documents are not supported yet.")
