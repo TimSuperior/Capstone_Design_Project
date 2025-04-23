@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: my-v0-project
+    env: node
+    buildCommand: yarn install
+    startCommand: yarn start
+    rootDir: .
