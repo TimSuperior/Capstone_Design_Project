@@ -119,6 +119,7 @@ bot.on("photo", async (ctx) => {
       filename: "photo.jpg",
       contentType: "image/jpeg", // Ensure contentType is set
     });
+    console.log(formData)
 
     const response = await fetch(API_ENDPOINT, {
       method: "POST",
@@ -127,6 +128,7 @@ bot.on("photo", async (ctx) => {
     });
 
     if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
+    console.log(response)
     const data = await response.json();
 
     ctx.session.messageCount++;
