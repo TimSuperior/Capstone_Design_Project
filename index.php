@@ -75,29 +75,14 @@ $total_bookmarked = $select_bookmark->rowCount();
       }
       ?>
 
-      <div class="box">
-         <h3 class="title">top categories</h3>
-         <div class="flex">
-            <a href="search_course.php?"><i class="fas fa-code"></i><span>development</span></a>
-            <a href="#"><i class="fas fa-chart-simple"></i><span>business</span></a>
-            <a href="#"><i class="fas fa-pen"></i><span>design</span></a>
-            <a href="#"><i class="fas fa-chart-line"></i><span>marketing</span></a>
-            <a href="#"><i class="fas fa-music"></i><span>music</span></a>
-            <a href="#"><i class="fas fa-camera"></i><span>photography</span></a>
-            <a href="#"><i class="fas fa-cog"></i><span>software</span></a>
-            <a href="#"><i class="fas fa-vial"></i><span>science</span></a>
-         </div>
-      </div>
 
       <div class="box">
          <h3 class="title">popular topics</h3>
          <div class="flex">
-            <a href="#"><i class="fab fa-html5"></i><span>HTML</span></a>
-            <a href="#"><i class="fab fa-css3"></i><span>CSS</span></a>
-            <a href="#"><i class="fab fa-js"></i><span>javascript</span></a>
-            <a href="#"><i class="fab fa-react"></i><span>react</span></a>
-            <a href="#"><i class="fab fa-php"></i><span>PHP</span></a>
-            <a href="#"><i class="fab fa-bootstrap"></i><span>bootstrap</span></a>
+            <a href="#"><i class=""></i><span>Eng-Listening</span></a>
+            <a href="#"><i class=""></i><span>Eng-Reading</span></a>
+            <a href="#"><i class=""></i><span>Eng-Writing</span></a>
+            <a href="#"><i class=""></i><span>Eng-Speaking</span></a>
          </div>
       </div>
 

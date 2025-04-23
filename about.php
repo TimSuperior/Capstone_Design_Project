@@ -41,7 +41,7 @@ if(isset($_COOKIE['user_id'])){
 
       <div class="content">
          <h3>why choose us?</h3>
-         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nobis distinctio, nisi consequatur ad sequi, rem odit fugiat assumenda eligendi iure aut sunt ratione, tempore porro expedita quisquam.</p>
+         <p>To create an AI-powered English learning platform that helps users improve their language skills through interactive lessons, voice and image recognition, grammar correction, and a Telegram quiz bot — making learning more smart, engaging, and accessible.</p>
          <a href="courses.html" class="inline-btn">our courses</a>
       </div>
 

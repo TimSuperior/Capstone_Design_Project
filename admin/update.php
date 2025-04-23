@@ -19,11 +19,11 @@ if(isset($_POST['submit'])){
    $prev_image = $fetch_tutor['image'];
 
    $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $name = htmlspecialchars(trim($name), ENT_QUOTES, 'UTF-8');
    $profession = $_POST['profession'];
-   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
+   $profession = htmlspecialchars(trim($profession), ENT_QUOTES, 'UTF-8');
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = htmlspecialchars(trim($email), ENT_QUOTES, 'UTF-8');
 
    if(!empty($name)){
       $update_name = $conn->prepare("UPDATE `tutors` SET name = ? WHERE id = ?");
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
    }
 
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = htmlspecialchars(trim($image), ENT_QUOTES, 'UTF-8');
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
@@ -73,11 +73,11 @@ if(isset($_POST['submit'])){
 
    $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
    $old_pass = sha1($_POST['old_pass']);
-   $old_pass = filter_var($old_pass, FILTER_SANITIZE_STRING);
+   $old_pass = htmlspecialchars(trim($old_pass), ENT_QUOTES, 'UTF-8');
    $new_pass = sha1($_POST['new_pass']);
-   $new_pass = filter_var($new_pass, FILTER_SANITIZE_STRING);
+   $new_pass = htmlspecialchars(trim($new_pass), ENT_QUOTES, 'UTF-8');
    $cpass = sha1($_POST['cpass']);
-   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $cpass = htmlspecialchars(trim($cpass), ENT_QUOTES, 'UTF-8');
 
    if($old_pass != $empty_pass){
       if($old_pass != $prev_pass){
@@ -144,7 +144,7 @@ if(isset($_POST['submit'])){
                <option value="photographer">photographer</option>
             </select>
             <p>your email </p>
-            <input type="email" name="email" placeholder="<?= $fetch_profile['email']; ?>" maxlength="20"  class="box">
+            <input type="email" name="email" placeholder="<?= $fetch_profile['email']; ?>"  class="box">
          </div>
          <div class="col">
             <p>old password :</p>
