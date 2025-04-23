@@ -120,6 +120,8 @@ formData.append("file", photoBuffer, {
   contentType: "image/jpeg",
 });
 
+console.log(formData.getHeaders())
+
 const response = await fetch(API_ENDPOINT, {
   method: "POST",
   body: formData,
