@@ -190,21 +190,19 @@ app.get("/", (req, res) => {
   res.send("Smart Correction Telegram Bot is running!");
 });
 
-if (!process.env.PORT) {
-  app.listen(PORT, () => {
-    console.log(`✅ Express server is listening on port ${PORT}`);
-    console.log(`📡 Webhook path is: ${SECRET_PATH}`);
+app.listen(PORT, () => {
+  console.log(`✅ Express server is listening on port ${PORT}`);
+  console.log(`📡 Webhook path is: ${SECRET_PATH}`);
 
-    const WEBHOOK_DOMAIN = process.env.WEBHOOK_DOMAIN;
-    if (WEBHOOK_DOMAIN) {
-      bot.telegram
-        .setWebhook(`${WEBHOOK_DOMAIN}${SECRET_PATH}`)
-        .then(() => console.log(`Webhook set to: ${WEBHOOK_DOMAIN}${SECRET_PATH}`))
-        .catch((err) => console.error("Failed to set webhook:", err));
-    } else {
-      console.warn("WEBHOOK_DOMAIN not set. Use tools like ngrok for local testing.");
-    }
-  });
-}
+  const WEBHOOK_DOMAIN = process.env.WEBHOOK_DOMAIN;
+  if (WEBHOOK_DOMAIN) {
+    bot.telegram
+      .setWebhook(`${WEBHOOK_DOMAIN}${SECRET_PATH}`)
+      .then(() => console.log(`Webhook set to: ${WEBHOOK_DOMAIN}${SECRET_PATH}`))
+      .catch((err) => console.error("Failed to set webhook:", err));
+  } else {
+    console.warn("WEBHOOK_DOMAIN not set. Use tools like ngrok for local testing.");
+  }
+});
 
 module.exports = app;
