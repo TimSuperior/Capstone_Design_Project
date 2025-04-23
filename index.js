@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 10000;
 
 // Initialize the bot with your token from environment variables
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
-const API_ENDPOINT = process.env.API_ENDPOINT || "https://smart-correct.onrender.com";
+const API_ENDPOINT =
+  process.env.API_ENDPOINT || "https://smart-correct.onrender.com";
 
 if (!PORT) throw new Error("⚠️ PORT environment variable is not set");
 
@@ -29,20 +30,20 @@ bot.start((ctx) => {
   ctx.session.messageCount = 0;
   ctx.reply(
     "👋 Welcome to the Smart Correction Bot!\n\n" +
-    "I can help correct grammar and spelling in your text or images.\n\n" +
-    "✏️ Send me a text message to correct grammar and spelling\n" +
-    "📸 Send me an image containing text to extract and correct it\n\n" +
-    "Let's get started!"
+      "I can help correct grammar and spelling in your text or images.\n\n" +
+      "✏️ Send me a text message to correct grammar and spelling\n" +
+      "📸 Send me an image containing text to extract and correct it\n\n" +
+      "Let's get started!"
   );
 });
 
 bot.help((ctx) => {
   ctx.reply(
     "🔍 *How to use this bot:*\n\n" +
-    "• Send any text message for grammar and spelling correction\n" +
-    "• Send a photo containing text to extract and correct it\n" +
-    "• Use /status to check if the API is working\n" +
-    "• Use /stats to see your usage statistics",
+      "• Send any text message for grammar and spelling correction\n" +
+      "• Send a photo containing text to extract and correct it\n" +
+      "• Use /status to check if the API is working\n" +
+      "• Use /stats to see your usage statistics",
     { parse_mode: "Markdown" }
   );
 });
@@ -50,12 +51,16 @@ bot.help((ctx) => {
 bot.command("status", async (ctx) => {
   try {
     await ctx.replyWithChatAction("typing");
-    const response = await fetch(API_ENDPOINT.replace("/smart-correct/", "/")).catch(() => ({ ok: false }));
+    const response = await fetch(
+      API_ENDPOINT.replace("/smart-correct/", "/")
+    ).catch(() => ({ ok: false }));
 
     if (response.ok) {
       await ctx.reply("✅ The correction API is online and ready to use!");
     } else {
-      await ctx.reply("❌ The correction API appears to be offline or experiencing issues.");
+      await ctx.reply(
+        "❌ The correction API appears to be offline or experiencing issues."
+      );
     }
   } catch (error) {
     console.error("Error checking API status:", error);
@@ -66,9 +71,12 @@ bot.command("status", async (ctx) => {
 bot.command("stats", (ctx) => {
   const { messageCount, lastInteraction } = ctx.session;
   const lastDate = new Date(lastInteraction).toLocaleString();
-  ctx.reply(`📊 *Your Statistics*\n\n• Items corrected: ${messageCount}\n• Last interaction: ${lastDate}`, {
-    parse_mode: "Markdown",
-  });
+  ctx.reply(
+    `📊 *Your Statistics*\n\n• Items corrected: ${messageCount}\n• Last interaction: ${lastDate}`,
+    {
+      parse_mode: "Markdown",
+    }
+  );
 });
 
 bot.on("text", async (ctx) => {
@@ -81,12 +89,14 @@ bot.on("text", async (ctx) => {
     const formData = new FormData();
     formData.append("direct_text", message);
 
-    const response = await fetch(API_ENDPOINT, {
-      method: "POST",
-      body: formData,
+    const response = await axios.post(API_ENDPOINT, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
 
-    if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
+    if (!response.ok)
+      throw new Error(`API responded with status: ${response.status}`);
 
     const data = await response.json();
 
@@ -94,12 +104,15 @@ bot.on("text", async (ctx) => {
     ctx.session.lastInteraction = new Date().toISOString();
 
     let replyMessage = data.input ? `*Original:*\n${data.input}\n\n` : "";
-    replyMessage += data.feedback || "No corrections needed! Your text looks good.";
+    replyMessage +=
+      data.feedback || "No corrections needed! Your text looks good.";
 
     await ctx.reply(replyMessage, { parse_mode: "Markdown" });
   } catch (error) {
     console.error("Error processing text message:", error);
-    await ctx.reply("⚠️ Sorry, I encountered an error while processing your message. Please try again later.");
+    await ctx.reply(
+      "⚠️ Sorry, I encountered an error while processing your message. Please try again later."
+    );
   }
 });
 
@@ -115,53 +128,62 @@ bot.on("photo", async (ctx) => {
     const photoBuffer = Buffer.from(arrayBuffer);
 
     const formData = new FormData();
-formData.append("file", photoBuffer, {
-  filename: "photo.jpg",
-  contentType: "image/jpeg",
-});
+    formData.append("file", photoBuffer, {
+      filename: "photo.jpg",
+      contentType: "image/jpeg",
+    });
 
-console.log(formData.getHeaders())
+    console.log(formData.getHeaders());
 
-const response = await fetch(API_ENDPOINT, {
-  method: "POST",
-  body: formData,
-  headers: { "Content-Type": 'multipart/form-data; boundary=--------------------------971584321772620012130756' },
-});
+    const response = await axios.post(API_ENDPOINT, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
-
-    if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
-    console.log(response)
+    if (!response.ok)
+      throw new Error(`API responded with status: ${response.status}`);
+    console.log(response);
     const data = await response.json();
 
     ctx.session.messageCount++;
     ctx.session.lastInteraction = new Date().toISOString();
 
     let replyMessage = data.input ? `*Extracted Text:*\n${data.input}\n\n` : "";
-    replyMessage += data.feedback || "No corrections needed! The text in your image looks good.";
+    replyMessage +=
+      data.feedback ||
+      "No corrections needed! The text in your image looks good.";
 
     await ctx.reply(replyMessage, { parse_mode: "Markdown" });
   } catch (error) {
     console.error("Error processing photo:", error);
-    await ctx.reply("⚠️ Sorry, I encountered an error while processing your photo. Please try again later.");
+    await ctx.reply(
+      "⚠️ Sorry, I encountered an error while processing your photo. Please try again later."
+    );
   }
 });
 
-
 bot.on("document", (ctx) =>
-  ctx.reply("📄 I can only analyze text messages and photos at the moment. Documents are not supported yet.")
+  ctx.reply(
+    "📄 I can only analyze text messages and photos at the moment. Documents are not supported yet."
+  )
 );
 
 bot.on("voice", (ctx) =>
-  ctx.reply("🎤 I can only analyze text messages and photos at the moment. Voice messages are not supported yet.")
+  ctx.reply(
+    "🎤 I can only analyze text messages and photos at the moment. Voice messages are not supported yet."
+  )
 );
 
 bot.on("sticker", (ctx) =>
-  ctx.reply("😊 Nice sticker! However, I can only analyze text messages and photos at the moment.")
+  ctx.reply(
+    "😊 Nice sticker! However, I can only analyze text messages and photos at the moment."
+  )
 );
 
 bot.catch((err, ctx) => {
   console.error("Bot error:", err);
-  ctx.reply("⚠️ An error occurred while processing your request. Please try again later.");
+  ctx.reply(
+    "⚠️ An error occurred while processing your request. Please try again later."
+  );
 });
 
 // Webhook route
@@ -188,7 +210,9 @@ app.get("/set-webhook", async (req, res) => {
     const webhookUrl = `${WEBHOOK_DOMAIN}${SECRET_PATH}`;
     const result = await bot.telegram.setWebhook(webhookUrl);
 
-    res.send(`Webhook was set to: ${webhookUrl}<br>Result: ${result ? "OK" : "Failed"}`);
+    res.send(
+      `Webhook was set to: ${webhookUrl}<br>Result: ${result ? "OK" : "Failed"}`
+    );
   } catch (error) {
     console.error("Error setting webhook:", error);
     res.status(500).send(`Failed to set webhook: ${error.message}`);
@@ -208,10 +232,14 @@ app.listen(PORT, () => {
   if (WEBHOOK_DOMAIN) {
     bot.telegram
       .setWebhook(`${WEBHOOK_DOMAIN}${SECRET_PATH}`)
-      .then(() => console.log(`Webhook set to: ${WEBHOOK_DOMAIN}${SECRET_PATH}`))
+      .then(() =>
+        console.log(`Webhook set to: ${WEBHOOK_DOMAIN}${SECRET_PATH}`)
+      )
       .catch((err) => console.error("Failed to set webhook:", err));
   } else {
-    console.warn("WEBHOOK_DOMAIN not set. Use tools like ngrok for local testing.");
+    console.warn(
+      "WEBHOOK_DOMAIN not set. Use tools like ngrok for local testing."
+    );
   }
 });
 
