@@ -67,7 +67,7 @@ if(isset($_POST['submit'])){
          <h3>get in touch</h3>
          <input type="text" placeholder="enter your name" required maxlength="100" name="name" class="box">
          <input type="email" placeholder="enter your email" required maxlength="100" name="email" class="box">
-         <input type="number" min="0" max="9999999999" placeholder="enter your number" required maxlength="10" name="number" class="box">
+         <input type="number" min="0" max="99999999999" placeholder="enter your number" required maxlength="11" name="number" class="box">
          <textarea name="msg" class="box" placeholder="enter your message" required cols="30" rows="10" maxlength="1000"></textarea>
          <input type="submit" value="send message" class="inline-btn" name="submit">
       </form>
@@ -86,8 +86,8 @@ if(isset($_POST['submit'])){
       <div class="box">
          <i class="fas fa-envelope"></i>
          <h3>email address</h3>
-         <a href="mailto:shaikhanas@gmail.com">shaikhanas@gmail.come</a>
-         <a href="mailto:anasbhai@gmail.com">anasbhai@gmail.come</a>
+         <a href="mailto:mamatovsattor12@gmail.com">mamatovsattor12@gmail.com</a>
+         <a href="mailto:anasbhai@gmail.com">anasbhai@gmail.com</a>
       </div>
 
       <div class="box">
