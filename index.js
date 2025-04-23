@@ -153,7 +153,7 @@ bot.on("photo", async (ctx) => {
 
     let replyMessage = data.input ? `*Extracted Text:*\n${data.input}\n\n` : "";
     replyMessage +=
-      data.feedback ||
+      data.correction ||
       "No corrections needed! The text in your image looks good.";
 
     await ctx.reply(replyMessage, { parse_mode: "Markdown" });
