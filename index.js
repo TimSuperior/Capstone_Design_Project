@@ -6,11 +6,20 @@ const bodyParser = require("body-parser")
 
 // Initialize Express app
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 10000
 
 // Initialize the bot with your token from environment variables
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN)
 const API_ENDPOINT = process.env.API_ENDPOINT || "https://your-api-name.onrender.com/smart-correct/"
+
+if (!PORT) {
+  throw new Error("⚠️ PORT environment variable is not set")
+}
+
+app.listen(PORT, () => {
+  console.log(`✅ Express server is listening on port ${PORT}`)
+})
+
 
 // Set up middleware
 app.use(bodyParser.json())
