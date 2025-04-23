@@ -1,6 +1,5 @@
 const express = require("express");
 const { Telegraf, session } = require("telegraf");
-const fetch = require("node-fetch");
 const FormData = require("form-data");
 const bodyParser = require("body-parser");
 
