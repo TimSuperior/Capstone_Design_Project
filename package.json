@@ -9,19 +9,12 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.20",
     "axios": "^1.8.4",
     "body-parser": "latest",
     "buffer": "latest",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "cmdk": "1.0.4",
     "date-fns": "4.1.0",
-    "embla-carousel-react": "8.5.1",
     "express": "latest",
     "form-data": "latest",
-    "input-otp": "1.4.1",
-    "lucide-react": "^0.454.0",
     "node-fetch": "latest",
     "telegraf": "latest"
   },
