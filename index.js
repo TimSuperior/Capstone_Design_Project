@@ -115,17 +115,17 @@ bot.on("photo", async (ctx) => {
     const photoBuffer = Buffer.from(arrayBuffer);
 
     const formData = new FormData();
-    formData.append("file", photoBuffer, {
-      filename: "photo.jpg",
-      contentType: "image/jpeg", // Ensure contentType is set
-    });
-    console.log(formData)
+formData.append("file", photoBuffer, {
+  filename: "photo.jpg",
+  contentType: "image/jpeg",
+});
 
-    const response = await fetch(API_ENDPOINT, {
-      method: "POST",
-      body: formData,
-      headers: formData.getHeaders(), // Important!
-    });
+const response = await fetch(API_ENDPOINT, {
+  method: "POST",
+  body: formData,
+  headers: formData.getHeaders(), // This is crucial
+});
+
 
     if (!response.ok) throw new Error(`API responded with status: ${response.status}`);
     console.log(response)
