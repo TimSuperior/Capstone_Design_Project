@@ -6,10 +6,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "node index.js"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",
