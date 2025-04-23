@@ -134,16 +134,19 @@ bot.on("photo", async (ctx) => {
       contentType: "image/jpeg",
     });
 
-    console.log(formData.getHeaders());
-
-    const response = await axios.post(API_ENDPOINT, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
+    const response = await axios.post(`${API_ENDPOINT}`, formData, {
+      headers: {
+        ...formData.getHeaders(),
+        "Content-Type": "multipart/form-data",
+      },
+      timeout: 30000, // 30 second timeout
     });
 
-    if (!response.ok)
+    if (response.status !== 200) {
       throw new Error(`API responded with status: ${response.status}`);
-    console.log(response);
-    const data = await response.json();
+    }
+
+    const data = response.data;
 
     ctx.session.messageCount++;
     ctx.session.lastInteraction = new Date().toISOString();
@@ -156,9 +159,27 @@ bot.on("photo", async (ctx) => {
     await ctx.reply(replyMessage, { parse_mode: "Markdown" });
   } catch (error) {
     console.error("Error processing photo:", error);
-    await ctx.reply(
-      "⚠️ Sorry, I encountered an error while processing your photo. Please try again later."
-    );
+    let errorMessage =
+      "⚠️ Sorry, I encountered an error while processing your photo. ";
+
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      errorMessage += `Server responded with status ${error.response.status}. `;
+      if (error.response.status === 502) {
+        errorMessage +=
+          "The correction service is currently unavailable. Please try again later.";
+      }
+    } else if (error.request) {
+      // The request was made but no response was received
+      errorMessage +=
+        "No response received from the server. Please try again later.";
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      errorMessage += "Please try again later.";
+    }
+
+    await ctx.reply(errorMessage);
   }
 });
 
