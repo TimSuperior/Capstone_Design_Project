@@ -190,7 +190,7 @@ app.get("/", (req, res) => {
   res.send("Smart Correction Telegram Bot is running!");
 });
 
-if (!process.env.VERCEL) {
+if (!process.env.PORT) {
   app.listen(PORT, () => {
     console.log(`✅ Express server is listening on port ${PORT}`);
     console.log(`📡 Webhook path is: ${SECRET_PATH}`);
