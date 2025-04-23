@@ -125,7 +125,7 @@ console.log(formData.getHeaders())
 const response = await fetch(API_ENDPOINT, {
   method: "POST",
   body: formData,
-  headers: formData.getHeaders(), // This is crucial
+  headers: { "Content-Type": 'multipart/form-data; boundary=--------------------------971584321772620012130756' },
 });
 
 
