@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 10000;
 
 // Initialize the bot with your token from environment variables
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
-const API_ENDPOINT = process.env.API_ENDPOINT || "https://your-api-name.onrender.com/smart-correct/";
+const API_ENDPOINT = process.env.API_ENDPOINT || "https://smart-correct.onrender.com";
 
 if (!PORT) throw new Error("⚠️ PORT environment variable is not set");
 
@@ -110,7 +110,8 @@ bot.on("photo", async (ctx) => {
     const fileLink = await ctx.telegram.getFileLink(photoId);
 
     const photoResponse = await fetch(fileLink.href || fileLink.toString());
-    const photoBuffer = await photoResponse.buffer();
+    const arrayBuffer = await photoResponse.arrayBuffer();
+    const photoBuffer = Buffer.from(arrayBuffer);
 
     const formData = new FormData();
     formData.append("file", photoBuffer, { filename: "photo.jpg" });
