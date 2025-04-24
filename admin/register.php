@@ -6,18 +6,18 @@ if(isset($_POST['submit'])){
 
    $id = unique_id();
    $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $name = strip_tags($name);
    $profession = $_POST['profession'];
-   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
+   $profession = strip_tags($profession);
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = filter_var($email, FILTER_SANITIZE_EMAIL);
    $pass = sha1($_POST['pass']);
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+   $pass = strip_tags($pass);
    $cpass = sha1($_POST['cpass']);
-   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+   $cpass = strip_tags($cpass);
 
    $image = $_FILES['image']['name'];
-   $image = filter_var($image, FILTER_SANITIZE_STRING);
+   $image = strip_tags($image);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
@@ -100,7 +100,7 @@ if(isset($message)){
                <option value="photographer">photographer</option>
             </select>
             <p>your email <span>*</span></p>
-            <input type="email" name="email" placeholder="enter your email" maxlength="20" required class="box">
+            <input type="email" name="email" placeholder="enter your email" maxlength="50" required class="box">
          </div>
          <div class="col">
             <p>your password <span>*</span></p>
