@@ -30,21 +30,22 @@ bot.use((ctx, next) => {
 bot.start((ctx) => {
   ctx.session.messageCount = 0;
   ctx.reply(
-    "👋 Welcome to the Smart Correction Bot!\n\n" +
-      "I can help correct grammar and spelling in your text or images.\n\n" +
-      "✏️ Send me a text message to correct grammar and spelling\n" +
-      "📸 Send me an image containing text to extract and correct it\n\n" +
-      "Let's get started!"
+    "👋 *Welcome to GrammarCheck Bot!*\n\n" +
+      "📸 *Send me an image* of handwritten or printed text\n" +
+      "✍️ *Type a sentence directly* to check grammar\n\n" +
+      "🧠 I'll give simple grammar and spelling feedback.\n" +
+      "📎 Try `/help` for usage tips.",
+    { parse_mode: "Markdown" }
   );
 });
 
 bot.help((ctx) => {
   ctx.reply(
-    "🔍 *How to use this bot:*\n\n" +
-      "• Send any text message for grammar and spelling correction\n" +
-      "• Send a photo containing text to extract and correct it\n" +
-      "• Use /status to check if the API is working\n" +
-      "• Use /stats to see your usage statistics",
+    "🔧 *How to use GrammarCheck Bot:*\n\n" +
+      "• ✏️ Type a sentence → get grammar feedback\n" +
+      "• 📷 Send a photo of handwriting → extract + correct\n" +
+      "• 📊 `/stats` → See your usage history\n" +
+      "• ⚙️ `/status` → Check system status",
     { parse_mode: "Markdown" }
   );
 });
@@ -90,6 +91,7 @@ bot.on("text", async (ctx) => {
     const formData = new FormData();
     formData.append("direct_text", message);
 
+
     const response = await axios.post(`${API_ENDPOINT}`, formData, {
       headers: {
         ...formData.getHeaders(),
@@ -107,11 +109,15 @@ bot.on("text", async (ctx) => {
     ctx.session.messageCount++;
     ctx.session.lastInteraction = new Date().toISOString();
 
-    let replyMessage = data.input ? `*Original:*\n${data.input}\n\n` : "";
-    replyMessage +=
-      data.correction || "No corrections needed! Your text looks good.";
+    let replyMessage = data.input
+  ? `📥 *Original:* \`${data.input}\`\n\n`
+  : "";
 
-    await ctx.reply(replyMessage, { parse_mode: "Markdown" });
+replyMessage += data.correction
+  ? `✏️ *Correction:* \n${data.correction}`
+  : "✅ No corrections needed! Your text looks great.";
+
+await ctx.reply(replyMessage, { parse_mode: "Markdown" });
   } catch (error) {
     console.error("Error processing text message:", error);
     let errorMessage =
@@ -140,7 +146,7 @@ bot.on("text", async (ctx) => {
 
 bot.on("photo", async (ctx) => {
   try {
-    await ctx.replyWithChatAction("upload_photo");
+    await ctx.replyWithChatAction("typing"); // or "upload_photo"
 
     const photoId = ctx.message.photo.at(-1).file_id;
     const fileLink = await ctx.telegram.getFileLink(photoId);
@@ -172,12 +178,15 @@ bot.on("photo", async (ctx) => {
     ctx.session.messageCount++;
     ctx.session.lastInteraction = new Date().toISOString();
 
-    let replyMessage = data.input ? `*Extracted Text:*\n${data.input}\n\n` : "";
-    replyMessage +=
-      data.correction ||
-      "No corrections needed! The text in your image looks good.";
+    let replyMessage = data.input
+  ? `🖼 *Extracted Text:* \`${data.input}\`\n\n`
+  : "";
 
-    await ctx.reply(replyMessage, { parse_mode: "Markdown" });
+replyMessage += data.correction
+  ? `✏️ *Correction:* \n${data.correction}`
+  : "✅ No corrections needed! Your image looks great.";
+
+await ctx.reply(replyMessage, { parse_mode: "Markdown" });
   } catch (error) {
     console.error("Error processing photo:", error);
     let errorMessage =
@@ -205,21 +214,15 @@ bot.on("photo", async (ctx) => {
 });
 
 bot.on("document", (ctx) =>
-  ctx.reply(
-    "📄 I can only analyze text messages and photos at the moment. Documents are not supported yet."
-  )
+  ctx.reply("📄 I can't read documents yet. Try sending a photo or text.")
 );
 
 bot.on("voice", (ctx) =>
-  ctx.reply(
-    "🎤 I can only analyze text messages and photos at the moment. Voice messages are not supported yet."
-  )
+  ctx.reply("🎤 Voice messages aren't supported. Please type or send a photo.")
 );
 
 bot.on("sticker", (ctx) =>
-  ctx.reply(
-    "😊 Nice sticker! However, I can only analyze text messages and photos at the moment."
-  )
+  ctx.reply("😊 Cute! But I only work with text and images for now.")
 );
 
 bot.catch((err, ctx) => {
