@@ -2015,3 +2015,11 @@ sys.argv: ['azure_scorer.py', 'temp_audio.wav', '2>&1']
 sys.argv: ['azure_scorer.py', 'temp_audio.wav', '2>&1']
 ✅ Audio converted successfully.
 ✅ Recognized: So now I would like to talk about I I mean I want you to talk about the hobbies. What is hobbies?
+
+=== Script STARTED ===
+sys.argv: ['azure_scorer.py', 'temp_audio.wav']
+❌ Torchaudio conversion failed: Couldn't find appropriate backend to handle uri temp_audio.wav and format None.
+
+=== Script STARTED ===
+sys.argv: ['azure_scorer.py', 'temp_audio.wav']
+❌ Audio conversion failed: Error opening 'temp_audio.wav': Format not recognised.

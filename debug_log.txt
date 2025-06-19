@@ -440,3 +440,107 @@ Array
         )
 
 )
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\php5F28.tmp
+            [error] => 0
+            [size] => 58121
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\php15CD.tmp
+            [error] => 0
+            [size] => 36869
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\php34A0.tmp
+            [error] => 0
+            [size] => 60053
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\php6E20.tmp
+            [error] => 0
+            [size] => 41698
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\php7F6.tmp
+            [error] => 0
+            [size] => 35903
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\phpEF75.tmp
+            [error] => 0
+            [size] => 31073
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\phpA1FD.tmp
+            [error] => 0
+            [size] => 39767
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => D:\Soft\xampp\tmp\php6CFF.tmp
+            [error] => 0
+            [size] => 37835
+        )
+
+)

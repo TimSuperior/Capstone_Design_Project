@@ -1,13 +1,19 @@
 import sys
 import os
 import json
-import subprocess
-import azure.cognitiveservices.speech as speechsdk
-import openai
 import time
+import openai
+import torch
+import torchaudio
+import soundfile as sf
+import azure.cognitiveservices.speech as speechsdk
 
-openai.api_key = "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"
+openai.api_key = "sk-..."  # Masked for safety
 log_file = "scorer_debug.txt"
+
+def write_log(msg):
+    with open(log_file, "a", encoding="utf-8") as f:
+        f.write(msg + "\n")
 
 def calculate_word_accuracy_from_phonemes(word):
     phonemes = word.get("Phonemes", [])
@@ -15,19 +21,15 @@ def calculate_word_accuracy_from_phonemes(word):
         p.get("PronunciationAssessment", {}).get("AccuracyScore")
         for p in phonemes if p.get("PronunciationAssessment", {}).get("AccuracyScore") is not None
     ]
-    return round(sum(scores) / len(scores) , 1) if scores else None
-
-def write_log(msg):
-    with open(log_file, "a", encoding="utf-8") as f:
-        f.write(msg + "\n")
+    return round(sum(scores) / len(scores), 1) if scores else None
 
 def get_grammar_feedback(text):
     try:
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a helpful English grammar assistant. Correct grammar mistakes and explain them well and in details."},
-                {"role": "user", "content": f"Check the grammar of this sentence: \"{text}\". Suggest a corrected version and explain the mistakes. If ther are no mistakes, just say 'No mistakes found'."}
+                {"role": "system", "content": "You are a helpful English grammar assistant. Correct grammar mistakes and explain them."},
+                {"role": "user", "content": f"Check this sentence: \"{text}\". Correct and explain mistakes, or say 'No mistakes found'."}
             ],
             temperature=0.3
         )
@@ -40,7 +42,7 @@ def get_conversational_reply(text):
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a friendly English conversation partner. Reply naturally to the user's input with 3-4 sentences. Pretend you can listen to the voice. Try to ask questions related to the user input."},
+                {"role": "system", "content": "You are a friendly English conversation partner. Respond naturally and ask related questions."},
                 {"role": "user", "content": text}
             ],
             temperature=0.7
@@ -51,7 +53,7 @@ def get_conversational_reply(text):
 
 def synthesize_speech(text, output_file):
     try:
-        speech_config = speechsdk.SpeechConfig(subscription="A4sHOhiteY0wH5CI5g20AJxTekahdZNFSYRbH41rTxjzRolGpcZDJQQJ99BEACNns7RXJ3w3AAAYACOGSxBM", region="koreacentral")
+        speech_config = speechsdk.SpeechConfig(subscription="A4s...", region="koreacentral")
         audio_config = speechsdk.audio.AudioOutputConfig(filename=output_file)
         synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
         result = synthesizer.speak_text_async(text).get()
@@ -60,12 +62,12 @@ def synthesize_speech(text, output_file):
         write_log(f"❌ Azure TTS error: {e}")
         return False
 
-# Start processing
+# === Script Start ===
 write_log("\n=== Script STARTED ===")
 write_log(f"sys.argv: {sys.argv}")
 
 if len(sys.argv) < 2:
-    write_log("❌ No audio path provided")
+    write_log("❌ No audio file path provided.")
     print(json.dumps({"error": "❌ No audio file path provided."}))
     sys.exit(1)
 
@@ -77,19 +79,30 @@ if not os.path.exists(original_file):
     print(json.dumps({"error": f"❌ File not found: {original_file}"}))
     sys.exit(1)
 
+# === Convert audio using soundfile + torchaudio ===
 try:
-    subprocess.run(["ffmpeg", "-y", "-i", original_file, "-ac", "1", "-ar", "16000", "-sample_fmt", "s16", converted_file], check=True)
-    write_log("✅ Audio converted successfully.")
-except subprocess.CalledProcessError as e:
-    write_log(f"❌ FFmpeg conversion failed: {str(e)}")
-    print(json.dumps({"error": "❌ Failed to convert audio with ffmpeg."}))
+    data, sample_rate = sf.read(original_file)
+    waveform = torch.tensor(data, dtype=torch.float32)
+
+    if waveform.ndim == 1:
+        waveform = waveform.unsqueeze(0)  # mono
+    elif waveform.ndim == 2:
+        waveform = waveform.mean(dim=1, keepdim=True).T  # stereo to mono
+
+    if sample_rate != 16000:
+        resample = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=16000)
+        waveform = resample(waveform)
+
+    torchaudio.save(converted_file, waveform, 16000)
+    write_log("✅ Audio converted using soundfile + torchaudio.")
+except Exception as e:
+    write_log(f"❌ Audio conversion failed: {e}")
+    print(json.dumps({"error": "❌ Audio conversion failed", "message": str(e)}))
     sys.exit(1)
 
-speech_key = "A4sHOhiteY0wH5CI5g20AJxTekahdZNFSYRbH41rTxjzRolGpcZDJQQJ99BEACNns7RXJ3w3AAAYACOGSxBM"
-region = "koreacentral"
-
+# === Azure Speech Recognition ===
 try:
-    speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=region)
+    speech_config = speechsdk.SpeechConfig(subscription="A4s...", region="koreacentral")
     speech_config.speech_recognition_language = "en-US"
     audio_config = speechsdk.AudioConfig(filename=converted_file)
 
@@ -101,22 +114,21 @@ try:
         sys.exit(1)
 
     reference_text = result.text.strip()
-    write_log(f"✅ Recognized: {reference_text}")
+    write_log(f"✅ Recognized text: {reference_text}")
 except Exception as e:
-    write_log(f"❌ Azure Recognition Error: {str(e)}")
-    print(json.dumps({"error": "❌ Recognition exception.", "message": str(e)}))
+    write_log(f"❌ Azure recognition error: {e}")
+    print(json.dumps({"error": "❌ Azure recognition failed", "message": str(e)}))
     sys.exit(1)
 
 # === GPT + TTS ===
 grammar_feedback = get_grammar_feedback(reference_text)
 gpt_reply = get_conversational_reply(reference_text)
 
-# Create unique filename
 timestamp = int(time.time())
 reply_audio_filename = f"gpt_reply_{timestamp}.wav"
 tts_success = synthesize_speech(gpt_reply, reply_audio_filename)
 
-# === Pronunciation Assessment ===
+# === Azure Pronunciation Assessment ===
 try:
     pron_config = speechsdk.PronunciationAssessmentConfig(
         reference_text=reference_text,
@@ -147,12 +159,11 @@ try:
                 "phonemes": [
                     {
                         "phoneme": p.get("Phoneme"),
-                        "accuracy": round(p.get("PronunciationAssessment", {}).get("AccuracyScore") * 0.8) 
+                        "accuracy": round(p.get("PronunciationAssessment", {}).get("AccuracyScore") * 0.8)
                     } for p in word.get("Phonemes", [])
                 ]
             })
 
-    # Final JSON output
     print(json.dumps({
         "recognized_text": reference_text,
         "accuracy": round(assessment_result.accuracy_score * 0.8, 1),
@@ -169,7 +180,3 @@ except Exception as e:
     write_log(f"❌ Final error: {e}")
     print(json.dumps({"error": "❌ Final assessment error.", "message": str(e)}))
     sys.exit(1)
-
-
-
-
