@@ -1,0 +1,442 @@
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpF01C.tmp
+            [error] => 0
+            [size] => 66408
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpE1CC.tmp
+            [error] => 0
+            [size] => 53720
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpB0B8.tmp
+            [error] => 0
+            [size] => 94414
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php8A0C.tmp
+            [error] => 0
+            [size] => 33209
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php71FC.tmp
+            [error] => 0
+            [size] => 36191
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpDE61.tmp
+            [error] => 0
+            [size] => 57615
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php6ADC.tmp
+            [error] => 0
+            [size] => 95407
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php5BC5.tmp
+            [error] => 0
+            [size] => 65404
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpAA53.tmp
+            [error] => 0
+            [size] => 116045
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpDDB1.tmp
+            [error] => 0
+            [size] => 45967
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php9657.tmp
+            [error] => 0
+            [size] => 35903
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpC7B.tmp
+            [error] => 0
+            [size] => 75509
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php57E9.tmp
+            [error] => 0
+            [size] => 42665
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php869.tmp
+            [error] => 0
+            [size] => 16583
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php673B.tmp
+            [error] => 0
+            [size] => 40733
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php629D.tmp
+            [error] => 0
+            [size] => 54257
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php7608.tmp
+            [error] => 0
+            [size] => 24311
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpE7DD.tmp
+            [error] => 0
+            [size] => 23345
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php4EDE.tmp
+            [error] => 0
+            [size] => 19481
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php65A.tmp
+            [error] => 0
+            [size] => 21413
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php6044.tmp
+            [error] => 0
+            [size] => 21413
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpD040.tmp
+            [error] => 0
+            [size] => 22379
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php75EE.tmp
+            [error] => 0
+            [size] => 21413
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php70AC.tmp
+            [error] => 0
+            [size] => 29141
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php971C.tmp
+            [error] => 0
+            [size] => 19481
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php16FC.tmp
+            [error] => 0
+            [size] => 17549
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpA09F.tmp
+            [error] => 0
+            [size] => 19481
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php3C63.tmp
+            [error] => 0
+            [size] => 68747
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpBE56.tmp
+            [error] => 0
+            [size] => 52325
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php7B8.tmp
+            [error] => 0
+            [size] => 18515
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php60F5.tmp
+            [error] => 0
+            [size] => 19481
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpDBF8.tmp
+            [error] => 0
+            [size] => 19481
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\php66AB.tmp
+            [error] => 0
+            [size] => 20447
+        )
+
+)
+Array
+(
+    [audio] => Array
+        (
+            [name] => temp_audio.wav
+            [full_path] => temp_audio.wav
+            [type] => audio/webm
+            [tmp_name] => C:\xampp\tmp\phpFF40.tmp
+            [error] => 0
+            [size] => 106421
+        )
+
+)

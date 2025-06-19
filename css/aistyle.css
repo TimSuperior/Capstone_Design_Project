@@ -1,0 +1,204 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+}
+
+:root {
+  --text-color: #edf3ff;
+  --subheading-color: #97a7ca;
+  --placeholder-color: #c3cdde;
+  --primary-color: #101623;
+  --secondary-color: #283043;
+  --secondary-hover-color: #333e58;
+  --scrollbar-color: #626a7f;
+}
+
+/* Body */
+body{
+  background-color: #101623;
+}
+
+/* Container */
+.ai-container {
+  padding: 32px 0 60px;
+}
+
+.ai-container :where(.ai-app-header, .ai-suggestions, .ai-prompt-wrapper, .ai-disclaimer-text) {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+  max-width: 980px;
+}
+
+.ai-container .ai-app-header {
+  margin-top: 4vh;
+}
+
+/* App Header */
+.ai-app-header .ai-heading {
+  font-size: 3rem;
+  width: fit-content;
+  background: linear-gradient(to right, #1d7efd, #8f6fff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ai-app-header .ai-sub-heading {
+  font-size: 2.6rem;
+  margin-top: -5px;
+  color: var(--subheading-color);
+}
+
+/* Suggestions */
+.ai-container .ai-suggestions {
+  display: flex;
+  gap: 15px;
+  margin-top: 9.5vh;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ai-suggestions .ai-suggestions-item {
+  width: 228px;
+  padding: 18px;
+  flex-shrink: 0;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-radius: 12px;
+  background: var(--secondary-color);
+  transition: 0.3s ease;
+}
+.ai-suggestions .ai-suggestions-item p{
+    font-size: 18px;
+}
+
+.ai-suggestions .ai-suggestions-item:hover {
+  background: var(--secondary-hover-color);
+}
+
+.ai-suggestions .ai-suggestions-item text {
+  font-size: 1.1rem;
+}
+
+.ai-suggestions .ai-suggestions-item span {
+  height: 45px;
+  width: 45px;
+  margin-top: 35px;
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #1d7efd;
+  background: var(--primary-color);
+}
+
+.ai-suggestions .ai-suggestions-item:nth-child(2) span {
+  color: #28a745;
+}
+
+.ai-suggestions .ai-suggestions-item:nth-child(3) span {
+  color: #ffc107;
+}
+
+.ai-suggestions .ai-suggestions-item:nth-child(4) span {
+  color: #6f42c1;
+}
+
+/* Prompt Container */
+.ai-prompt-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 0;
+  background: var(--primary-color);
+}
+
+.ai-prompt-container :where(.ai-prompt-wrapper, .ai-prompt-form, .ai-prompt-actions) {
+  display: flex;
+  gap: 12px;
+  height: 56px;
+  align-items: center;
+}
+
+.ai-prompt-wrapper .ai-prompt-form {
+  width: 100%;
+  height: 100%;
+  border-radius: 130px;
+  background: var(--secondary-color);
+}
+
+.ai-prompt-form .ai-promt-input {
+  height: 100%;
+  width: 100%;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  padding-left: 54px;
+  color: var(--text-color);
+}
+
+.ai-prompt-form .ai-promt-input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.ai-prompt-wrapper button {
+  width: 56px;
+  height: 100%;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  transition: 0.3s ease;
+}
+
+.ai-prompt-wrapper button:hover {
+  background: var(--secondary-hover-color);
+}
+
+.ai-prompt-form .ai-prompt-actions {
+  gap: 5px;
+  margin-right: 7px;
+}
+
+.ai-prompt-form .ai-prompt-actions button {
+  height: 45px;
+  width: 45px;
+}
+
+.ai-prompt-form #ai-send-prompt-btn {
+  color: white;
+  display: none;
+  background-color: #1d73fd;
+}
+
+.ai-prompt-form .ai-promt-input:valid ~ .ai-prompt-actions #ai-send-prompt-btn {
+  display: block;
+}
+
+
+.ai-prompt-container .ai-disclaimer-text {
+  text-align: center;
+  font-size: 2 rem;
+  padding: 16px 20px 0;
+  color: var(--placeholder-color);
+}
+
+
+

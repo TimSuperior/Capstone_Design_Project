@@ -1,0 +1,133 @@
+/* Container that wraps the chat area */
+.chat-container {
+  background-color: #101623;
+ 
+  position: relative;
+  z-index: 0; /* Keep it below children */
+  overflow-y: auto;
+  will-change: transform;
+  transform: translateZ(0); /* Prevents flicker on some browsers */
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 5px;
+  margin: 20px auto;
+  max-width: 900px;
+  height: 420px;
+  overflow-y: auto;
+  scroll-behavior: smooth;  /* 👈 Enables smooth scroll */
+  display: flex;
+  flex-direction: column;   /* 👈 Makes message stacking behave properly */
+  gap: 12px;                /* 👈 Optional: adds spacing between messages */
+  color: #fff;
+}
+
+  
+  /* Chat message styles */
+  .message {
+    background-color: #101623;
+    
+    margin: 0;
+    display: flex;
+    max-width: 100%;
+  }
+  .message, .text, .text-bubble {
+    position: static !important;
+    z-index: auto !important;
+    transform: none !important;
+  }
+  
+  /* User messages (aligned right) */
+  .message.user {
+    justify-content: flex-end;
+  }
+  
+  .message.user img {
+    max-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  
+  /* AI messages (aligned left) */
+  .message.ai {
+    justify-content: flex-start;
+    
+  }
+  
+  .message.ai .text {
+    background-color: #4f46e5;
+    color: white;
+    padding:0;
+    border-radius: 12px;
+    max-width: 70%;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .text-bubble.ai-response {
+    background: linear-gradient(135deg, #3a3f51, #1e293b);
+    color: #e2e8f0;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 70%;
+    word-wrap: break-word;
+    margin: 8px 0;
+    border-left: 4px solid #4f46e5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  
+  
+  /* Prompt form and input */
+  .ai-prompt-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .ai-promt-input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+  }
+  
+  
+  .ai-prompt-actions button:hover {
+    background-color: #4338ca;
+  }
+
+
+  .message.user .text-bubble {
+    background-color: #4f46e5;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 70%;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .ai-prompt-containe{
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+  }
+  .ai-prompt-form {
+    position: relative; /* Or fixed/absolute, depending on your layout */
+    z-index: 10; /* Must be higher than chat elements */
+    background-color: #0f172a; /* Optional: ensure it's visually above */
+  }
+
+
+
+
+  
+  
+  
+  

@@ -1,0 +1,56 @@
+.word-token {
+    position: relative;
+    display: inline-block;
+    margin-right: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+    line-height: 1.6;
+    font-family: "Noto Sans IPA", "Arial", sans-serif;
+  }
+  
+  .word-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #101623;
+    color: #f9fafb;
+    padding: 8px 12px;
+    border-radius: 8px;
+   
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 999;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    pointer-events: none;
+    font-family: "Noto Sans IPA", "Arial", sans-serif;
+  }
+  
+  .word-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    
+  }
+  
+  .word-tooltip div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .word-token:hover .word-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
